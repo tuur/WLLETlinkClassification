@@ -1,0 +1,47 @@
+<h2 id="code-associated-with-">Code associated with:</h2>
+<h3 id="word-level-loss-extensions-for-neural-temporal-relation-classification">Word-level Loss Extensions for Neural Temporal Relation Classification</h3>
+<p>Artuur Leeuwenberg &amp; Marie-Francine Moens
+<em>In Proceedings of COLING</em>, Santa Fe, New Mexico, 2018.</p>
+<h4 id="terms-of-usage">Terms of Usage</h4>
+<p>The code may only be used for Academic purposes. In case of usage, please cite the corresponding paper. For commercial use please check the LICENSE.html.</p>
+<h3 id="what-this-code-can-be-used-for-">What this code can be used for:</h3>
+<p>Training and prediction of neural temporal relation classification models, with or without an additional word-level skip-gram objective for learning the model&#39;s word representations, i.e. to reproduce the results from the COLING 2018 paper. A tiny artificial dataset was added to run the code, as the THYME and MIMIC III require a license agreement so could not be released with the code. </p>
+<h3 id="how-do-i-get-set-up-">How do I get set up?</h3>
+<p>Install  Python 2.7 (if not yet installed)</p>
+<p>Install GraphViz  (if not present already) with:</p>
+<pre><code>sudo apt-<span class="hljs-keyword">get</span> install graphviz
+</code></pre><p>Setup and activate (line 2) a virtual environment, and install the Python dependencies with:</p>
+<pre><code>virtualenv venv -p python2.<span class="hljs-number">7</span>
+<span class="hljs-keyword">source</span> venv<span class="hljs-regexp">/bin/</span>activate
+pip install -r requirements.txt
+</code></pre><p>Install and setup the Stanford POS Tagger with Python NLTK with:</p>
+<pre><code>python -m nltk<span class="hljs-selector-class">.downloader</span> -d venv/nltk_data punkt
+python -m nltk<span class="hljs-selector-class">.downloader</span> -d venv/nltk_data third-party
+wget https:<span class="hljs-comment">//nlp.stanford.edu/software/stanford-postagger-2016-10-31.zip</span>
+unzip stanford-postagger-<span class="hljs-number">2016</span>-<span class="hljs-number">10</span>-<span class="hljs-number">31</span><span class="hljs-selector-class">.zip</span>
+mv stanford-postagger-<span class="hljs-number">2016</span>-<span class="hljs-number">10</span>-<span class="hljs-number">31</span> stanford-postagger
+rm stanford-postagger-<span class="hljs-number">2016</span>-<span class="hljs-number">10</span>-<span class="hljs-number">31</span><span class="hljs-selector-class">.zip</span>
+mv english-caseless-left3words-distsim<span class="hljs-selector-class">.tagger</span> stanford-postagger/models/
+mv english-caseless-left3words-distsim<span class="hljs-selector-class">.tagger</span><span class="hljs-selector-class">.props</span> stanford-postagger/models/
+</code></pre><h3 id="running-the-code-">Running the code:</h3>
+<p>To train and predict with different models from the paper using the provided tiny artificial dataset (using CPU by default) run:</p>
+<pre><code><span class="hljs-keyword">sh</span> demo.<span class="hljs-keyword">sh</span>
+</code></pre><p>To get more information on how to use the code (e.g. use GPU) inspect <code>demo.sh</code> or run:</p>
+<pre><code>python run_experiment<span class="hljs-selector-class">.py</span> -h
+</code></pre><h3 id="reproducing-the-results-from-the-paper-">Reproducing the results from the paper:</h3>
+<p>To run the same models on the same data as those from the paper:</p>
+<ol>
+<li>Obtain the <a href="https://clear.colorado.edu/TemporalWiki/index.php/Main_Page">THYME</a> corpus and <a href="https://mimic.physionet.org/">MIMIC III</a> dataset.</li>
+<li>Place the THYME Train and Dev sections in <code>data/real/Train/</code>, and the THYME Test section in <code>data/real/Test/</code>, like the artificial data (corresponding .xml and .txt pairs in subfolders).</li>
+<li>Place a copy of each raw .txt file from the THYME Train and Dev sections in <code>data/real/Raw/</code></li>
+<li>Obtain the used MIMIC III section from the MIMIC III <code>NOTEEVENTS_DATA_TABLE.csv</code> by running:<pre><code><span class="hljs-string">python </span><span class="hljs-built_in">get-mimic3-subsection.py</span> <span class="hljs-string">NOTEEVENTS_DATA_TABLE.</span><span class="hljs-string">csv</span>
+</code></pre>and add the obtained .txt files from <code>mimic3-subsection-out/</code> to <code>data/real/Raw/</code></li>
+<li>The data should now be set up. You can run the script to train the models:<pre><code><span class="hljs-keyword">sh</span> table2.<span class="hljs-keyword">sh</span>
+</code></pre></li>
+</ol>
+<p>By default, the script runs on CPU. To run on GPU, change the <code>CUDA_VISIBLE_DEVICES</code> in <code>table2.sh</code>.</p>
+<h3 id="questions-">Questions?</h3>
+<blockquote>
+<p>Any questions? Feel free to send an email to tuur.leeuwenberg@cs.kuleuven.be</p>
+</blockquote>
+
