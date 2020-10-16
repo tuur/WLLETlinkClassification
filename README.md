@@ -1,8 +1,7 @@
 ## Code associated with:
 
 ### Word-level Loss Extensions for Neural Temporal Relation Classification
-Artuur Leeuwenberg & Marie-Francine Moens
-*In Proceedings of COLING*, Santa Fe, New Mexico, 2018.
+>Artuur Leeuwenberg & Marie-Francine Moens, *In Proceedings of COLING*, Santa Fe, New Mexico, 2018.
 
 #### Terms of Usage
 The code may only be used for Academic purposes. In case of usage, please cite the corresponding paper. For commercial use please check the LICENSE.html.
@@ -66,4 +65,4 @@ sh table2.sh
 By default, the script runs on CPU. To run on GPU, change the `CUDA_VISIBLE_DEVICES` in `table2.sh`.
 
 ### Questions?
-> Any questions? Feel free to send an email to tuur.leeuwenberg@cs.kuleuven.be
+> Any questions? Feel free to send an email!
